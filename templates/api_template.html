@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{%block title %}API REST{%endblock%}
+{%block content%}
+<div class="container mt-4">
+
+    
+    <!-- Título dinámico -->
+    <h1 class="mb-4">{% if producto %}Detalles del Producto{% else %}Lista de Productos{% endif %}</h1>
+
+    <!-- Mensaje de errores -->
+    {% if errors %}
+    <div class="alert alert-danger">
+        <strong>Error:</strong> {{ errors }}
+    </div>
+    {% endif %}
+
+    <!-- Mensaje de éxito -->
+    {% if success %}
+    <div class="alert alert-success">
+        {{ success }}
+    </div>
+    {% endif %}
+
+    <!-- Mostrar lista de productos -->
+    {% if productos %}
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">Stock: {{ producto.stock }}</p>
+                    <p class="card-text text-muted">Precio: ${{ producto.precio }}</p>
+                    <a href="{% if producto.id_producto %}{% url 'producto_detalles' producto.id_producto %}{% else %}#{% endif %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Mostrar detalles de un producto -->
+    {% if producto %}
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Nombre:</strong> {{ producto.nombre }}</li>
+        <li class="list-group-item"><strong>Stock:</strong> {{ producto.stock }}</li>
+        <li class="list-group-item"><strong>Precio:</strong> ${{ producto.precio }}</li>
+    </ul>
+    <a href="/api/" class="btn btn-secondary mt-4">Volver a la lista</a>
+    {% endif %}
+
+    <!-- Formulario para agregar productos (solo si estamos en la lista) -->
+    {% if productos and not producto %}
+    <h2 class="mt-4">Agregar Producto</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" required>
+        </div>
+        <div class="mb-3">
+            <label for="stock" class="form-label">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precio" name="precio" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
