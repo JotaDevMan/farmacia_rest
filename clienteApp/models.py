@@ -13,6 +13,9 @@ class Producto(models.Model):
     stock = models.IntegerField()
     precio = models.IntegerField()
 
+    def __str__(self):
+        return str(self.id_producto) + " " + self.nombre + self.stock + "($" + str(self.precio) + ")"
+
 class Ticket(models.Model):
     id_ticket = models.AutoField(primary_key=True)
     id_cliente_temporal = models.CharField(unique=True, max_length=15, default=uuid.uuid4().hex[:15])
