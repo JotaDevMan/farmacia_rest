@@ -3,3 +3,4 @@ __pycache__
 /clienteApp/__pycache__
 /clienteApp
 *.pyc
+clienteApp/__pycache__/apps.cpython-312.pyc
