@@ -2,3 +2,4 @@ __pycache__
 *.pyc
 /clienteApp/__pycache__
 /clienteApp
+*.pyc
