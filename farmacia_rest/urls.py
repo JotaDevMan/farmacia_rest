@@ -21,5 +21,6 @@ from clienteApp import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("api/", views.producto_lista)
+    path("api/", views.producto_lista),
+    path("", views.obtener_productos, name="index")
 ]

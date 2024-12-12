@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos - Inicio</title>
+  </head>
+  <body>
+    <h1 class="titulo">Lista de Productos</h1>
+
+    <div class="flex-container">
+      {% for producto in productos %}
+      <div class="product-card">
+        <div class="product-tumb">
+          <img src="{{ producto.image}}" alt="{{ producto.nombre }}" />
+        </div>
+        <div class="product-details">
+          <h4>{{ producto.nombre }}</h4>
+          <div class="product-bottom-details">
+            <div class="product-price">Precio: ${{ producto.precio }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
