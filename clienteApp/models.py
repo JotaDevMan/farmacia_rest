@@ -13,12 +13,9 @@ class Producto(models.Model):
     stock = models.IntegerField()
     precio = models.IntegerField()
 
-class ClienteTemporal(models.Model):
-    id_cliente = models.CharField(unique=True, max_length=15, default=uuid.uuid4().hex[:15]) 
-
 class Ticket(models.Model):
     id_ticket = models.AutoField(primary_key=True)
-    id_cliente = models.ForeignKey(ClienteTemporal, on_delete=models.CASCADE, related_name="tickets")
+    id_cliente_temporal = models.CharField(unique=True, max_length=15, default=uuid.uuid4().hex[:15])
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     precio_total = models.IntegerField()
 
