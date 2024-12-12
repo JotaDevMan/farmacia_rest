@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro del Trabajador{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Registro de Trabajador</h2>
+
+    {% if error %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Error:</strong> {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="rut" class="form-label">RUT</label>
+            <input type="text" class="form-control" id="rut" name="rut" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
+{% endblock %}

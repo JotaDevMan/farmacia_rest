@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar sesión{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Iniciar sesión</h2>
+    
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Error:</strong> Usuario o contraseña incorrectos.
+    </div>
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="username" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    </form>
+</div>
+{% endblock %}

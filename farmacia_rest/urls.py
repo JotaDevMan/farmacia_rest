@@ -1,11 +1,10 @@
-
 from django.contrib import admin
 from django.urls import path, include
-from clienteApp import views
 
 urlpatterns = [
+    # Ruta del administrador
     path("admin/", admin.site.urls),
-    path("", include('clienteApp.urls'), name="index"),
-    path("api/", views.producto_lista, name="producto_lista"),
-    path('api/<int:pk>/', views.producto_detalles, name='producto_detalles'),
+
+    # Incluye las rutas específicas de la app clienteApp
+    path("", include('clienteApp.urls')),  # Aquí rediriges al archivo clienteApp/urls.py
 ]
