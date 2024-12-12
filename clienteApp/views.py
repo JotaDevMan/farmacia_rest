@@ -21,10 +21,30 @@ def producto_lista(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def producto_detalles(request, pk):
+    try:
+        producto = Producto.objects.get(pk=pk)
+    except Producto.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'GET':
+        serializer = ProductoSerializer(producto)
+        return Response(serializer.data)
+    if request.method == 'PUT':
+        serializer = ProductoSerializer(producto, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == 'DELETE':
+        producto.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 def obtener_productos(request):
     try:
-        # Asegúrate de usar la URL correcta de tu API
-        api_url = "http://localhost:8000/api/"  # Ajusta esta URL según tu configuración
+       
+        api_url = "http://localhost:8000/api/"  
         response = requests.get(api_url)
         
         if response.status_code == 200:
