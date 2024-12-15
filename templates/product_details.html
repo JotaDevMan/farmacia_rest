@@ -32,7 +32,7 @@
             <div class="card card-body">
                 <form method="post" action="{% url 'producto_detalles' producto.id_producto %}">
                     {% csrf_token %}
-                    <input type="hidden" name="_method" value="PUT"> <!-- Indica que es un PUT -->
+                    <input type="hidden" name="_method" value="PUT"> 
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
@@ -64,6 +64,6 @@
     {% endif %}
 
     <!-- Botón para volver -->
-    <a href="/api/" class="btn btn-secondary mt-4">Volver a la lista</a>
+    <a href="/api/productos/" class="btn btn-secondary mt-4">Volver a la lista</a>
 </div>
 {% endblock %}

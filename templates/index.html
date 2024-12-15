@@ -4,27 +4,7 @@
 {%block title %}Productos - Inicio{%endblock%}
 
 {%block content%}
-<section class="py-5 text-center container">
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Productos</h1>
-            <p class="lead text-body-secondary"></p>
-            <p>
-                {% if request.user.is_authenticated %}
-                    <div>
-                        <h5>¡Bienvenido, {{ request.user.username }}!</h5>
-                        <p>Tu sesión está activa. Token de autenticación:</p>
-                        <pre>{{ request.session.token }}</pre> <!-- Mostrar el token si está en la sesión -->
-                    </div>
-                {% else %}
-                    <div>
-                        <h5>No estás autenticado.</h5>
-                    </div>
-                {% endif %}
-            </p>
-        </div>
-    </div>
-</section>
+
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
