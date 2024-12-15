@@ -12,6 +12,7 @@ urlpatterns = [
     # API para autenticación
     path("api/iniciar-sesion/", views.api_iniciar_sesion, name="api_iniciar_sesion"),
     path("api/registro/", views.api_registro_trabajador, name="api_registro_trabajador"),
+    path("cerrar-sesion/", views.cerrar_sesion, name='cerrar_sesion'),
 
     # Vistas HTML para registro e inicio de sesión
     path("registro/", views.registro_trabajador, name="register"),

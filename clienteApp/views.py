@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer
 import requests
 from django.shortcuts import redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from rest_framework.authtoken.models import Token
 
 # Create your views here.
@@ -92,7 +92,7 @@ def producto_detalles(request, pk):
 
 def obtener_productos(request):
     try:
-        api_url = "http://localhost:8000/api/"
+        api_url = "http://localhost:8000/api/productos/"
         headers = {'Accept': 'application/json'}
         response = requests.get(api_url, headers=headers)
 
@@ -188,3 +188,8 @@ def iniciar_sesion(request):
 
     # Si no es una solicitud POST, mostrar el formulario vacío
     return render(request, 'trabajadorTemplates/login.html')
+
+
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('/')
